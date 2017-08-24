@@ -1,13 +1,17 @@
+{% set name = "lzo" %}
 {% set version = "2.10" %}
 {% set version_major = "2" %}
+{% set hash_type = "sha256" %}
+{% set hash_val = "c0f892943208266f9b6543b3ae308fab6284c5c90e627931446fb49b4221a072" %}
 
 package:
-  name: lzo
+  name: {{ name }}
   version: {{ version }}
 
 source:
-  url: http://www.oberhumer.com/opensource/lzo/download/lzo-{{ version }}.tar.gz
-  sha256: c0f892943208266f9b6543b3ae308fab6284c5c90e627931446fb49b4221a072
+  fn: {{ name }}-{{ version }}.tar.gz
+  url: http://www.oberhumer.com/opensource/{{ name }}/download/{{ name }}-{{ version }}.tar.gz
+  {{ hash_type }}: {{ hash_val }}
 
 build:
   number: 1000
@@ -17,10 +21,9 @@ build:
 
 requirements:
   build:
-    - cmake 3.*
     - {{ compiler('c') }}
     - cmake
-    - make
+    - make  # [not win]
 
 test:
   commands:
