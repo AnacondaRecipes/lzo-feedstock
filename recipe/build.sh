@@ -24,4 +24,4 @@ if [[ "$CONDA_BUILD_CROSS_COMPILATION" != "1" ]]; then
   ./lzotest -mlzo -n2 -q ${SRC_DIR}/COPYING
 fi
 
-make -j${CPU_COUNT} install
+make install
