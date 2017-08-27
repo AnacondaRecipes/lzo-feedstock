@@ -24,4 +24,4 @@ make -j${CPU_COUNT} ${VERBOSE_CM}
 # This is the same as `make test` when not using cmake.
 ./lzotest -mlzo -n2 -q ${SRC_DIR}/COPYING
 
-make -j${CPU_COUNT} install
+make install
