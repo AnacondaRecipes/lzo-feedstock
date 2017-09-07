@@ -14,7 +14,7 @@ source:
   {{ hash_type }}: {{ hash_val }}
 
 build:
-  number: 1000
+  number: 0
   run_exports:
     # excellent compat: https://abi-laboratory.pro/tracker/timeline/lzo/
     - {{ pin_subpackage('lzo') }}
@@ -22,9 +22,8 @@ build:
 requirements:
   build:
     - {{ compiler('c') }}
-    - cmake
-    - make  # [not win]
-
+    - cmake  # [not win]
+    - python  # [win]
 test:
   commands:
     - test -f ${PREFIX}/include/lzo/lzoconf.h                                 # [unix]
