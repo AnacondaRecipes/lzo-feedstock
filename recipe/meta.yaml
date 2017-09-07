@@ -15,22 +15,13 @@ source:
 
 build:
   number: 0
-  skip: True  # [win and py35]
   features:
-    - vc9   # [win and py27]
-    - vc14  # [win and py36]
+    - vc{{ vc }}       # [win]
 
 requirements:
   build:
     - {{ compiler('c') }}
     - cmake 3.*
-    - python     # [win]
-    - vc 9       # [win and py27]
-    - vc 14      # [win and py36]
-
-  run:
-    - vc 9       # [win and py27]
-    - vc 14      # [win and py36]
 
 test:
   commands:
@@ -50,8 +41,12 @@ test:
 about:
   home: http://www.oberhumer.com/opensource/lzo/
   license: GPL v2+
+  license_family: GPL2
   license_file: COPYING
   summary: LZO is a portable lossless data compression library written in ANSI C.
+  description: |
+    LZO offers pretty fast compression and extremely fast decompression.
+    MiniLZO is a very lightweight subset of the LZO library.
 
 extra:
   recipe-maintainers:
