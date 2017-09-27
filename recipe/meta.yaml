@@ -14,7 +14,9 @@ source:
   {{ hash_type }}: {{ hash_val }}
 
 build:
-  number: 0
+  number: 1
+  features:
+    - vc{{ vc }}       # [win]
   run_exports:
     # excellent compat: https://abi-laboratory.pro/tracker/timeline/lzo/
     - {{ pin_subpackage('lzo') }}
