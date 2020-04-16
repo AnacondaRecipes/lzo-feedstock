@@ -22,7 +22,9 @@ requirements:
   build:
     - {{ compiler('c') }}
     - cmake  # [not win]
-    - python  # [win]
+    - jom  # [win]
+  host:
+    - ripgrep
 test:
   commands:
     - test -f ${PREFIX}/include/lzo/lzoconf.h                                 # [unix]
