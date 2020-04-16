@@ -20,7 +20,7 @@ cmake -G "NMake Makefiles" ^
 if errorlevel 1 exit 1
 
 :: Build.
-nmake
+jom
 if errorlevel 1 exit 1
 
 :: Test.
