@@ -1,16 +1,14 @@
 {% set name = "lzo" %}
 {% set version = "2.10" %}
 {% set version_major = "2" %}
-{% set hash_type = "sha256" %}
-{% set hash_val = "c0f892943208266f9b6543b3ae308fab6284c5c90e627931446fb49b4221a072" %}
 
 package:
   name: {{ name }}
   version: {{ version }}
 
 source:
-  url: http://www.oberhumer.com/opensource/{{ name }}/download/{{ name }}-{{ version }}.tar.gz
-  {{ hash_type }}: {{ hash_val }}
+  url: https://www.oberhumer.com/opensource/{{ name }}/download/{{ name }}-{{ version }}.tar.gz
+  sha256: c0f892943208266f9b6543b3ae308fab6284c5c90e627931446fb49b4221a072
 
 build:
   number: 3
@@ -20,11 +18,12 @@ build:
 
 requirements:
   build:
+    - {{ stdlib('c') }}
     - {{ compiler('c') }}
     - cmake
     - ninja-base  # [win]
   host:
-    - ripgrep
+    - ripgrep 15
 test:
   commands:
     - test -f ${PREFIX}/include/lzo/lzoconf.h                                 # [unix]
@@ -37,7 +36,9 @@ test:
     - if not exist %PREFIX%\\Library\\bin\\lzo{{ version_major }}.dll exit 1  # [win]
 
 about:
-  home: http://www.oberhumer.com/opensource/lzo/
+  home: https://www.oberhumer.com/opensource/lzo/
+  dev_url: https://www.oberhumer.com/opensource/lzo/#download
+  doc_url: https://www.oberhumer.com/opensource/lzo/#abstract
   license: GPL-2.0-or-later
   license_family: GPL2
   license_file: COPYING
