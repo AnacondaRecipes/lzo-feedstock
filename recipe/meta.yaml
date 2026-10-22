@@ -22,8 +22,6 @@ requirements:
     - {{ compiler('c') }}
     - cmake
     - ninja-base  # [win]
-  host:
-    - ripgrep 15
 test:
   commands:
     - test -f ${PREFIX}/include/lzo/lzoconf.h                                 # [unix]
