@@ -9,18 +9,19 @@ set CFLAGS=
 set CXXFLAGS=
 
 :: Configure.
-cmake -G "NMake Makefiles" ^
+cmake -G "Ninja" ^
       -DCMAKE_BUILD_TYPE=Release ^
       -DCMAKE_PREFIX_PATH=%LIBRARY_PREFIX% ^
       -DCMAKE_INSTALL_PREFIX:PATH=%LIBRARY_PREFIX% ^
       -DCMAKE_INSTALL_FULL_LIBDIR:PATH=%LIBRARY_LIB% ^
       -DENABLE_SHARED=ON ^
       -DENABLE_STATIC=ON ^
+      -DCMAKE_POLICY_VERSION_MINIMUM=3.5 ^
       %SRC_DIR%
 if errorlevel 1 exit 1
 
 :: Build.
-jom
+ninja
 if errorlevel 1 exit 1
 
 :: Test.
@@ -28,5 +29,5 @@ lzotest.exe -mlzo -n2 -q %SRC_DIR%/COPYING
 if errorlevel 1 exit 1
 
 :: Install.
-nmake install
+ninja install
 if errorlevel 1 exit 1
